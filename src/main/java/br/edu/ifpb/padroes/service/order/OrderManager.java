@@ -8,6 +8,7 @@ import br.edu.ifpb.padroes.service.observer.EmailNotificationListener;
 import br.edu.ifpb.padroes.service.observer.SendEmail;
 import br.edu.ifpb.padroes.service.payment.PaymentService;
 import br.edu.ifpb.padroes.service.mail.EmailNotification;
+import br.edu.ifpb.padroes.service.state.OrderState;
 
 public class OrderManager {
     //TODO: Usar State
@@ -58,6 +59,7 @@ public class OrderManager {
 
      */
     public void cancelOrder() {
+        order.setStatus(OrderState.CANCELED);
 
     }
 
