@@ -1,13 +1,14 @@
 package br.edu.ifpb.padroes.service.order;
 
 import br.edu.ifpb.padroes.domain.Order;
+import br.edu.ifpb.padroes.service.estrategias.PagamentoEstrategia;
 import br.edu.ifpb.padroes.service.log.LogHandler;
 import br.edu.ifpb.padroes.service.log.LogService;
 import br.edu.ifpb.padroes.service.payment.PaymentService;
 import br.edu.ifpb.padroes.service.mail.EmailNotification;
 
 public class OrderManager {
-
+    //TODO: Usar State
     public OrderManager(Order order) {
         this.order = order;
     }
@@ -20,7 +21,7 @@ public class OrderManager {
 
     private LogService logService = new LogService(new LogHandler(LogHandler.LogHandlerType.FILE));
 
-    public void payOrder(PaymentService.PaymentType paymentType) {
+    /*public void payOrder(PaymentService.PaymentType paymentType) {
         order.setStatus(Order.OrderStatus.IN_PROGRESS);
         try {
             paymentService.doPayment(paymentType);
@@ -32,6 +33,17 @@ public class OrderManager {
             order.setStatus(Order.OrderStatus.PAYMENT_REFUSED);
             emailNotification.sendMailNotification(String.format("Order %d refused", order.getId()));
         }
+    }
+
+     */
+    public PagamentoEstrategia payOrder(PagamentoEstrategia pagamento) {
+        try {
+            paymentService.doPayment(pagamento);
+
+        } catch (Exception e){
+
+        }
+        return pagamento;
     }
 
     public void cancelOrder() {

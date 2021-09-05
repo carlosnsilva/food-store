@@ -1,12 +1,15 @@
 package br.edu.ifpb.padroes.service.payment;
 
+import br.edu.ifpb.padroes.service.estrategias.PagamentoEstrategia;
+
 public class PaymentService {
 
     public enum PaymentType {
         CREDIT_CARD, DEBIT, BILLET, PAYPAL
     }
 
-    public void doPayment(PaymentType type) throws Exception {
+    //TODO: Strategy
+    /*public void doPayment(PaymentType type) throws Exception {
         switch (type) {
             case CREDIT_CARD:
                 System.out.println("Do credit card payment!");
@@ -26,6 +29,11 @@ public class PaymentService {
 
 
 
+    }
+
+     */
+    public void doPayment(PagamentoEstrategia pagamento) throws Exception {
+        pagamento.Pagar();
     }
 
 }
