@@ -4,6 +4,8 @@ import br.edu.ifpb.padroes.domain.Order;
 import br.edu.ifpb.padroes.service.estrategias.PagamentoEstrategia;
 import br.edu.ifpb.padroes.service.log.LogHandler;
 import br.edu.ifpb.padroes.service.log.LogService;
+import br.edu.ifpb.padroes.service.observer.EmailNotificationListener;
+import br.edu.ifpb.padroes.service.observer.SendEmail;
 import br.edu.ifpb.padroes.service.payment.PaymentService;
 import br.edu.ifpb.padroes.service.mail.EmailNotification;
 
@@ -39,6 +41,8 @@ public class OrderManager {
     public PagamentoEstrategia payOrder(PagamentoEstrategia pagamento) {
         try {
             paymentService.doPayment(pagamento);
+            SendEmail send = new SendEmail();
+            send.event.subscribe("add", new EmailNotificationListener(emailNotification.email));
 
         } catch (Exception e){
 
