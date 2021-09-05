@@ -1,6 +1,7 @@
 package br.edu.ifpb.padroes.service.mail;
 
 import br.edu.ifpb.padroes.domain.Customer;
+// TODO: Observer
 
 public class EmailNotification {
 

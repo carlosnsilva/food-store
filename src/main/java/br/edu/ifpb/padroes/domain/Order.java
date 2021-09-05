@@ -1,5 +1,7 @@
 package br.edu.ifpb.padroes.domain;
 
+import br.edu.ifpb.padroes.service.state.OrderState;
+
 import java.time.Instant;
 import java.util.List;
 
@@ -13,7 +15,20 @@ public class Order {
     private OrderStatus status = OrderStatus.IN_PROGRESS;
 
     public enum OrderStatus {
-        IN_PROGRESS, CANCELED, PAYMENT_SUCCESS, PAYMENT_REFUSED
+        IN_PROGRESS, CANCELED, PAYMENT_SUCCESS, PAYMENT_REFUSED;
+        OrderState status = new OrderState() {
+            @Override
+            public Order InProgressStatus() {
+                System.out.println("Pedido em progresso");
+                return null;
+            }
+
+            @Override
+            public Order CanceledStatus() {
+                System.out.println("Pedido em cancelado");
+                return null;
+            }
+        };
     }
 
     public Long getId() {

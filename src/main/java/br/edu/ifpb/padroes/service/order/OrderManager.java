@@ -46,10 +46,15 @@ public class OrderManager {
         return pagamento;
     }
 
-    public void cancelOrder() {
+    /*public void cancelOrder() {
         order.setStatus(Order.OrderStatus.CANCELED);
         emailNotification.sendMailNotification(String.format("Order %d canceled", order.getId()));
         logService.debug(String.format("order %d canceled", order.getId()));
+    }
+
+     */
+    public void cancelOrder() {
+
     }
 
 }
